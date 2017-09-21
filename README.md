@@ -4,6 +4,8 @@ qs is an experiment combining FRP patterns with DOM querying, to attempt to remo
 
 qs is implemented using Kefir, and the examples below assume some knowledge of a Functional Reactive Programming library (TODO: make this not so).
 
+The goal is to create a declarative environment for smaller applications that don't require the complexity of React (or the view rendering); where jQuery might be the tool of choice for adding a handful of interactions to the page.
+
 ## Why?
 
 Often, when setting up any client-side JavaScript, program setup is deferred until after the DOM content is loaded on the page to ensure that elements exist before they are queried.
