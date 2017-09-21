@@ -59,8 +59,12 @@ $foo.style({
 
 ## Classes
 
-TODO
+TODO: Applying conditional classes
 
 ## Properties
 
-TODO
+TODO: Reading properties from DOM nodes
+
+## Missing elements
+
+TODO: What happens when an element isn't found
