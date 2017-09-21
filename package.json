@@ -1,0 +1,14 @@
+{
+  "name": "qs",
+  "version": "0.1.0",
+  "description": "Declarative DOM manipulation, alpha-quality",
+  "main": "index.js",
+  "repository": "https://github.com/standard-library/qs",
+  "author": "Standard Library",
+  "license": "MIT",
+  "dependencies": {
+    "@standard-library/kefir-evolve": "^1.0.0",
+    "@standard-library/q-prime": "^3.0.4",
+    "kefir": "^3.7.4"
+  }
+}
