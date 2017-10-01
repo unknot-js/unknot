@@ -1,8 +1,8 @@
-# qs
+# unknot
 
-qs is an experiment combining FRP patterns with DOM querying, to attempt to remove the complexity of the page lifecycle when declaring relationships between events and DOM manipulation.
+Unknot is an experiment combining FRP patterns with DOM querying, to attempt to remove the complexity of the page lifecycle when declaring relationships between events and DOM manipulation.
 
-qs is implemented using Kefir, and the examples below assume some knowledge of a Functional Reactive Programming library (TODO: make this not so).
+Unknot is implemented using Kefir, and the examples below assume some knowledge of a Functional Reactive Programming library (TODO: make this not so).
 
 The goal is to create a declarative environment for smaller applications that don't require the complexity of React (or the view rendering); where jQuery might be the tool of choice for adding a handful of interactions to the page.
 
@@ -19,10 +19,10 @@ $(document).on("ready", () => {
 });
 ```
 
-qs takes an alternative approach, allowing queries to be defined before page load, and delaying any manipulations until it is possible to do so.
+Unknot takes an alternative approach, allowing queries to be defined before page load, and delaying any manipulations until it is possible to do so.
 
 ```javascript
-# With qs as $:
+# With Unknot as $:
 const $foo = $(".foo");
 
 $foo.style({
@@ -30,7 +30,7 @@ $foo.style({
 });
 ```
 
-qs understands when it is possible to apply the declared styles, and doesn't attempt to assign them until the appropriate moment. In addition, styles are defined as observables, so any time the style-state is updated, the new styles are applied.
+Unknot understands when it is possible to apply the declared styles, and doesn't attempt to assign them until the appropriate moment. In addition, styles are defined as observables, so any time the style-state is updated, the new styles are applied.
 
 ## Events
 
@@ -50,7 +50,7 @@ $(document).on("ready", () => {
   });
 });
 
-# With qs as $:
+# With Unknot as $:
 const $foo = $(".foo");
 const clicks = $foo.events("click");
 

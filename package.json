@@ -1,9 +1,9 @@
 {
-  "name": "qs",
+  "name": "unknot",
   "version": "0.1.0",
   "description": "Declarative DOM manipulation, alpha-quality",
   "main": "index.js",
-  "repository": "https://github.com/standard-library/qs",
+  "repository": "https://github.com/standard-library/unknot",
   "author": "Standard Library",
   "license": "MIT",
   "dependencies": {
