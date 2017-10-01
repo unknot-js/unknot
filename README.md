@@ -51,7 +51,9 @@ const $ = unknot(loaded);
 
 From this point, you can use the query function `$` (or the name you choose) in the rest of your program without using callbacks.
 
-## Events
+## API
+
+### Events
 
 Event handlers can also be defined before the DOM has finished loading, using the `events` method.
 
@@ -78,11 +80,11 @@ $foo.style({
 });
 ```
 
-## Classes
+### Classes
 
 TODO: Applying conditional classes
 
-## Properties
+### Properties
 
 TODO: Reading properties from DOM nodes
 
