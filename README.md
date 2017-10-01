@@ -2,7 +2,7 @@
 
 Unknot is an experiment combining FRP patterns with DOM querying, to attempt to remove the complexity of the page lifecycle when declaring relationships between events and DOM manipulation.
 
-Unknot is implemented using Kefir, and the examples below assume some knowledge of a Functional Reactive Programming library (TODO: make this not so).
+Unknot is implemented using the [Kefir](https://rpominov.github.io/kefir), and the examples below assume some knowledge of Functional Reactive Programming patterns (TODO: make this not so).
 
 The goal is to create a declarative environment for smaller applications that don't require the complexity of React (or the view rendering); where jQuery might be the tool of choice for adding a handful of interactions to the page.
 
@@ -21,7 +21,7 @@ $(document).on("ready", () => {
 });
 ```
 
-Unknot takes an alternative approach, allowing queries to be defined before page load, and delaying any manipulations until it is possible to do so.
+Unknot takes an alternative approach, allowing queries and transformations to be defined before page load, and delaying any manipulations until it is possible to do so.
 
 ```javascript
 # With Unknot as $:
@@ -33,6 +33,23 @@ $foo.style({
 ```
 
 Unknot understands when it is possible to apply the declared styles, and doesn't attempt to assign them until the appropriate moment. In addition, styles are defined as observables, so any time the style-state is updated, the new styles are applied.
+
+## Setup
+
+The above example is somewhat simplified, as it omits two lines of required setup code necessary for unknot programs. Unknot still needs to know when queries should be attempted, and doesn't make assumptions about this by default. This information is supplied as an event stream passed to the `unknot` function. In most cases, the following setup code is sufficient to begin your unknot program:
+
+```javascript
+import unknot from "unknot";
+
+// Watch the document for the first `DOMContentLoaded` event as an event stream.
+const loaded = K.fromEvents(document, "DOMContentLoaded").take(1);
+
+// Supply the `loaded` event stream to `unknot` to create the query function.
+// $ can be named anything that makes sense for your application.
+const $ = unknot(loaded);
+```
+
+From this point, you can use the query function `$` (or the name you choose) in the rest of your program without using callbacks.
 
 ## Events
 
