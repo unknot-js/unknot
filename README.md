@@ -69,4 +69,24 @@ TODO: Reading properties from DOM nodes
 
 ## Missing elements
 
-TODO: What happens when an element isn't found
+If elements are not present in the document, any manipulations or attribute accesses are ignored.
+
+For example, using jQuery, you might check if an element exists before getting some information about it, and then conditionally applying the result:
+
+```javascript
+# With jQuery as $:
+$(document).on("ready", () => {
+  let $slideshow = $(".slideshow");
+
+  if ($slideshow.length) {
+    complexSetup($slideshow);
+  }
+});
+
+# With Unknot as $:
+const $slideshow = $(".slideshow");
+
+$slideshow.observe(complexSetup);
+```
+
+With Unknot, if the element is not found, any downstream code is skipped, without needing to check for the element's  existence using a conditional.
