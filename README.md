@@ -15,7 +15,9 @@ Often, when setting up any client-side JavaScript, program setup is deferred unt
 $(document).on("ready", () => {
   let $foo = $(".foo");
 
-  $foo.css({ backgroundColor: red });
+  $foo.css({
+    backgroundColor: "red"
+  });
 });
 ```
 
