@@ -1,7 +1,7 @@
 import test from "tape";
 import { Kefir as K } from "kefir";
 
-import unknot from "../index.js";
+import unknot from "../lib/index.js";
 
 test("creates a function", t => {
   const $ = unknot(K.never());

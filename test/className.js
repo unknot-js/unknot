@@ -1,7 +1,7 @@
 import test from "tape";
 import { Kefir as K } from "kefir";
 
-import className from "../../lib/className.js";
+import className from "../lib/className.js";
 
 test("adds a class", t => {
   var added = null;

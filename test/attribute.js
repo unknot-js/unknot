@@ -1,7 +1,7 @@
 import test from "tape";
 import { Kefir as K } from "kefir";
 
-import attribute from "../../lib/attribute.js";
+import attribute from "../lib/attribute.js";
 
 test("reads an attribute", t => {
   const element = K.constant({ foo: 1 });

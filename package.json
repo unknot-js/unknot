@@ -19,7 +19,7 @@
     "tape": "^4.8.0"
   },
   "scripts": {
-    "build": "babel index.js --out-dir build",
+    "build": "babel lib  --source-root . --out-dir build",
     "test": "tape -r babel-register 'test/**/*.js' | faucet"
   }
 }
