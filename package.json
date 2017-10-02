@@ -1,5 +1,5 @@
 {
-  "name": "unknot",
+  "name": "@standard-library/unknot",
   "version": "0.1.0",
   "description": "Declarative DOM manipulation, alpha-quality",
   "main": "build/index.js",
