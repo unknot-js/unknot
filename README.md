@@ -11,7 +11,7 @@ The goal is to create a declarative environment for smaller applications that do
 Often, when setting up any client-side JavaScript, program setup is deferred until after the DOM content is loaded on the page to ensure that elements exist before they are queried.
 
 ```javascript
-# With jQuery as $:
+// With jQuery as $:
 $(document).on("ready", () => {
   const $foo = $(".foo");
 
@@ -24,7 +24,7 @@ $(document).on("ready", () => {
 Unknot takes an alternative approach, allowing queries and transformations to be defined before page load, and delaying any manipulations until it is possible to do so.
 
 ```javascript
-# With Unknot as $:
+// With Unknot as $:
 const $foo = $(".foo");
 
 $foo.style({
@@ -33,6 +33,12 @@ $foo.style({
 ```
 
 Unknot understands when it is possible to apply the declared styles, and doesn't attempt to assign them until the appropriate moment. In addition, styles are defined as observables, so any time the style-state is updated, the new styles are applied.
+
+## Installation
+
+```shell
+yarn add @standard-library/unknot
+```
 
 ## Setup
 
@@ -124,7 +130,7 @@ Event handlers streams can be defined using the `events` method. Event handlers 
 For example, a small program that changes the opacity of an element to zero when it is clicked:
 
 ```javascript
-# With jQuery as $:
+// With jQuery as $:
 $(document).on("ready", () => {
   const $foo = $(".foo");
 
@@ -135,7 +141,7 @@ $(document).on("ready", () => {
   });
 });
 
-# With Unknot as $:
+// With Unknot as $:
 const $foo = $(".foo");
 const clicks = $foo.events("click");
 
@@ -193,14 +199,14 @@ $foo.style({
 
 NOTE: Using `attribute` will only read the attribute once when the document is loaded.
 
-## Missing elements
+#Missing elements
 
 If elements are not present in the document, any manipulations or attribute accesses are ignored.
 
 For example, using jQuery, you might check if an element exists before getting some information about it, and then conditionally applying the result:
 
 ```javascript
-# With jQuery as $:
+// With jQuery as $:
 $(document).on("ready", () => {
   const $slideshow = $(".slideshow");
 
@@ -209,7 +215,7 @@ $(document).on("ready", () => {
   }
 });
 
-# With Unknot as $:
+// With Unknot as $:
 const $slideshow = $(".slideshow");
 
 $slideshow.observe(complexSetup);
