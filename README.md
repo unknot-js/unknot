@@ -42,7 +42,7 @@ The above example is somewhat simplified, as it omits two lines of required setu
 import unknot from "unknot";
 
 // Watch the document for the first `DOMContentLoaded` event as an event stream.
-const loaded = K.fromEvents(document, "DOMContentLoaded").take(1);
+const loaded = Kefir.fromEvents(document, "DOMContentLoaded").take(1);
 
 // Supply the `loaded` event stream to `unknot` to create the query function.
 // $ can be named anything that makes sense for your application.
@@ -53,11 +53,72 @@ From this point, you can use the query function `$` (or the name you choose) in 
 
 ## API
 
+### Styles
+
+CSS styles are applied to an element using the `style` method.
+
+```javascript
+// With jQuery as $:
+$(document).on("ready", () => {
+  let $foo = $(".foo");
+
+  $foo.css({
+    backgroundColor: "red"
+  });
+});
+
+// With Unknot as $:
+const $foo = $(".foo");
+
+$foo.style({
+  backgroundColor: Kefir.constant("red")
+});
+```
+
+Rather than suppling an object literal of CSS rules to be applied once, unknot expects each value in the object to be a property stream (this is why `Kefir.constant` is used above, as it returns a property stream with a single, unchanging value). As the property's value changes, the rules are reapplied to the element with the new style definition.
+
+```javascript
+// With jQuery as $:
+$(document).on("ready", () => {
+  const $foo = $(".foo");
+  const colors = ["red", "green", "blue"];
+
+  setInterval(() => {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    $foo.css({
+      backgroundColor: randomColor
+    });
+  }, 1000)
+});
+
+// With Unknot as $:
+const $foo = $(".foo");
+const colors = ["red", "green", "blue"];
+const randomColor = Kefir.fromPoll(
+  1000,
+  () => colors[Math.floor(Math.random() * colors.length)]
+);
+
+$foo.style({
+  backgroundColor: randomColor
+});
+```
+
+When a property stream emits `null`, the corresponding CSS attribute is removed.
+
+```javascript
+// Sets initial value to `red`, then removes `backgroundColor` after 5 seconds
+$foo.style({
+  backgroundColor: Kefir.later(5000, null).toProperty(() => "red")
+});
+```
+
 ### Events
 
-Event handlers can also be defined before the DOM has finished loading, using the `events` method.
+Event handlers streams can be defined using the `events` method. Event handlers can also be defined before the DOM has finished loading.
 
-For example, a small program that changes the opacity of an element when it is clicked:
+For example, a small program that changes the opacity of an element to zero when it is clicked:
 
 ```javascript
 # With jQuery as $:
