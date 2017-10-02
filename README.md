@@ -166,9 +166,32 @@ const active = clicks.scan(previous => !previous, false);
 $foo.className("foo--active", active);
 ```
 
-### Properties
+### Attributes
 
-TODO: Reading properties from DOM nodes
+The `attribute` method provides access to element attributes as a property stream.
+
+```javascript
+// With jQuery as $:
+$(document).on("ready", () => {
+  const $foo = $(".foo");
+  const $bar = $(".bar");
+
+  $foo.style({
+    height: $bar.height()
+  });
+});
+
+// With Unknot as $:
+const $foo = $(".foo");
+const $bar = $(".bar");
+const barHeight = $bar.attribute("offsetHeight");
+
+$foo.style({
+  height: barHeight.map(h => `${h}px`)
+});
+```
+
+NOTE: Using `attribute` will only read the attribute once when the document is loaded.
 
 ## Missing elements
 
@@ -192,4 +215,4 @@ const $slideshow = $(".slideshow");
 $slideshow.observe(complexSetup);
 ```
 
-With Unknot, if the element is not found, any downstream code is skipped, without needing to check for the element's  existence using a conditional.
+With Unknot, if the element is not found, any downstream code is skipped, without needing to check for the element's existence using a conditional.

@@ -39,7 +39,7 @@ export default sample => {
         }
       });
 
-    element.property = name => element.map(e => e[name]);
+    element.attribute = name => element.map(e => e[name]);
 
     element.events = name => element.flatMapLatest(e => K.fromEvents(e, name));
 
