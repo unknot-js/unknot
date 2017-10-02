@@ -39,17 +39,18 @@ Unknot understands when it is possible to apply the declared styles, and doesn't
 The above example is somewhat simplified, as it omits two lines of required setup code necessary for unknot programs. Unknot still needs to know when queries should be attempted, and doesn't make assumptions about this by default. This information is supplied as an event stream passed to the `unknot` function. In most cases, the following setup code is sufficient to begin your unknot program:
 
 ```javascript
+import Kefir from "kefir";
 import unknot from "unknot";
 
 // Watch the document for the first `DOMContentLoaded` event as an event stream.
-const loaded = Kefir.fromEvents(document, "DOMContentLoaded").take(1);
+const loaded = Kefir.fromEvents(document, "DOMContentLoaded");
 
 // Supply the `loaded` event stream to `unknot` to create the query function.
 // $ can be named anything that makes sense for your application.
 const $ = unknot(loaded);
 ```
 
-From this point, you can use the query function `$` (or the name you choose) in the rest of your program without using callbacks.
+From this point, you can use the query function `$` (or the name your choice) in the rest of your program.
 
 ## API
 
