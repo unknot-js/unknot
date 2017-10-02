@@ -199,7 +199,7 @@ $foo.style({
 
 NOTE: Using `attribute` will only read the attribute once when the document is loaded.
 
-#Missing elements
+## Missing elements
 
 If elements are not present in the document, any manipulations or attribute accesses are ignored.
 
