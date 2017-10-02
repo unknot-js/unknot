@@ -114,6 +114,8 @@ $foo.style({
 });
 ```
 
+The `style` method should only be called once per element.
+
 ### Events
 
 Event handlers streams can be defined using the `events` method. Event handlers can also be defined before the DOM has finished loading.
