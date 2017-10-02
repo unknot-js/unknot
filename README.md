@@ -13,7 +13,7 @@ Often, when setting up any client-side JavaScript, program setup is deferred unt
 ```javascript
 # With jQuery as $:
 $(document).on("ready", () => {
-  let $foo = $(".foo");
+  const $foo = $(".foo");
 
   $foo.css({
     backgroundColor: "red"
@@ -60,7 +60,7 @@ CSS styles are applied to an element using the `style` method.
 ```javascript
 // With jQuery as $:
 $(document).on("ready", () => {
-  let $foo = $(".foo");
+  const $foo = $(".foo");
 
   $foo.css({
     backgroundColor: "red"
@@ -123,7 +123,7 @@ For example, a small program that changes the opacity of an element to zero when
 ```javascript
 # With jQuery as $:
 $(document).on("ready", () => {
-  let $foo = $(".foo");
+  const $foo = $(".foo");
 
   $foo.on("click", () => {
     $foo.css({
@@ -158,7 +158,7 @@ For example, using jQuery, you might check if an element exists before getting s
 ```javascript
 # With jQuery as $:
 $(document).on("ready", () => {
-  let $slideshow = $(".slideshow");
+  const $slideshow = $(".slideshow");
 
   if ($slideshow.length) {
     complexSetup($slideshow);
