@@ -145,7 +145,25 @@ $foo.style({
 
 ### Classes
 
-TODO: Applying conditional classes
+Using the `className` method, classes are added or removed by supplying a property stream that emits boolean values. The supplied class name will be applied when the property stream is `true`, and removed when it is `false`.
+
+```javascript
+// With jQuery as $:
+$(document).on("ready", () => {
+  const $foo = $(".foo");
+
+  $foo.on("click", () => {
+    $foo.toggleClass("foo--active");
+  });
+});
+
+// With Unknot as $:
+const $foo = $(".foo");
+const clicks = $foo.events("click");
+const active = clicks.scan(previous => !previous, false);
+
+$foo.className("foo--active", active);
+```
 
 ### Properties
 
