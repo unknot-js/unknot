@@ -27,10 +27,6 @@ var _style2 = _interopRequireDefault(_style);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var domResult = function domResult(e) {
-  return e === null ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
-};
-
 var DEFAULT_FUNCTIONS = {
   attribute: _attribute2.default,
   className: _className2.default,
@@ -38,16 +34,28 @@ var DEFAULT_FUNCTIONS = {
   style: _style2.default
 };
 
+var domResult = function domResult(e) {
+  return e === null ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
+};
+
+var queryMaybeBy = function queryMaybeBy(sample, selector) {
+  return sample.map(function () {
+    return (0, _qPrime.queryOne)(selector);
+  }).flatMap(domResult).toProperty();
+};
+
+var merge = function merge(element, functions) {
+  Object.keys(functions).forEach(function (name) {
+    element[name] = functions[name](element);
+  });
+
+  return element;
+};
+
 function unknot(sample) {
   return function (selector) {
-    var element = sample.map(function () {
-      return (0, _qPrime.queryOne)(selector);
-    }).flatMap(domResult).toProperty();
+    var element = queryMaybeBy(sample, selector);
 
-    Object.keys(DEFAULT_FUNCTIONS).forEach(function (name) {
-      element[name] = DEFAULT_FUNCTIONS[name](element);
-    });
-
-    return element;
+    return merge(element, DEFAULT_FUNCTIONS);
   };
 }
