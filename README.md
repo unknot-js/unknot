@@ -199,9 +199,9 @@ $foo.style({
 
 NOTE: Using `attribute` will only read the attribute once when the document is loaded.
 
-## Missing elements
+### Optional elements
 
-If elements are not present in the document, any manipulations or attribute accesses are ignored.
+If elements are not present in the document, Unknot will throw an error when they are queried. If there are certain elements that may not be present in the document, using `$.maybe` instead of `$` makes the query optional. Any manipulations or attribute accesses on a `$.maybe` query are ignored, and dependent code is not executed.
 
 For example, using jQuery, you might check if an element exists before getting some information about it, and then conditionally applying the result:
 
@@ -216,9 +216,9 @@ $(document).on("ready", () => {
 });
 
 // With Unknot as $:
-const $slideshow = $(".slideshow");
+const $slideshow = $.maybe(".slideshow");
 
 $slideshow.observe(complexSetup);
 ```
 
-With Unknot, if the element is not found, any downstream code is skipped, without needing to check for the element's existence using a conditional.
+Using `$.maybe`, if the element is not found, any downstream code is skipped, without needing to check for the element's existence using a conditional.

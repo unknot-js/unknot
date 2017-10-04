@@ -9,6 +9,8 @@ var _kefir = require("kefir");
 
 var _qPrime = require("@standard-library/q-prime");
 
+var _errors = require("./errors");
+
 var _attribute = require("./attribute");
 
 var _attribute2 = _interopRequireDefault(_attribute);
@@ -38,9 +40,9 @@ var domResult = function domResult(e) {
   return e === null ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
 };
 
-var queryMaybeBy = function queryMaybeBy(sample, selector) {
+var queryMaybeBy = function queryMaybeBy(sample, finder, selector) {
   return sample.map(function () {
-    return (0, _qPrime.queryOne)(selector);
+    return finder(selector);
   }).flatMap(domResult).toProperty();
 };
 
@@ -53,9 +55,27 @@ var merge = function merge(element, functions) {
 };
 
 function unknot(sample) {
-  return function (selector) {
-    var element = queryMaybeBy(sample, selector);
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$one = _ref.one,
+      one = _ref$one === undefined ? _qPrime.queryOne : _ref$one;
+
+  var domMaybe = function domMaybe(selector) {
+    var element = queryMaybeBy(sample, one, selector);
 
     return merge(element, DEFAULT_FUNCTIONS);
   };
+
+  var dom = function dom(selector) {
+    var element = domMaybe(selector);
+
+    element.onError(function (e) {
+      throw (0, _errors.NotFoundException)(selector);
+    });
+
+    return element;
+  };
+
+  dom.maybe = domMaybe;
+
+  return dom;
 }
