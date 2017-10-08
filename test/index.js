@@ -60,7 +60,7 @@ test("exposes a className function", t => {
 
 test("throws when element is not present", t => {
   const $ = unknot(K.constant(true), {
-    one: () => null
+    one: () => undefined
   });
 
   t.throws(() => {
@@ -82,7 +82,7 @@ test("does not throw when element is present", t => {
 
 test("does not throw when element is not present using maybe", t => {
   const $ = unknot(K.constant(true), {
-    one: () => null
+    one: () => undefined
   });
 
   t.doesNotThrow(() => {
