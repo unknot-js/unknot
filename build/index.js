@@ -37,7 +37,7 @@ var DEFAULT_FUNCTIONS = {
 };
 
 var domResult = function domResult(e) {
-  return e === null ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
+  return e === undefined ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
 };
 
 var queryMaybeBy = function queryMaybeBy(sample, finder, selector) {
