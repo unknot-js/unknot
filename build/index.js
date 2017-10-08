@@ -69,7 +69,7 @@ function unknot(sample) {
     var element = domMaybe(selector);
 
     element.onError(function (e) {
-      throw (0, _errors.NotFoundException)(selector);
+      throw new _errors.NotFoundException(selector);
     });
 
     return element;

@@ -1,7 +1,7 @@
 import test from "tape";
 import { Kefir as K } from "kefir";
 
-import { NotFoundException } from "../lib/errors.js";
+import { NotFoundException } from "../lib/errors";
 import unknot from "../lib/index.js";
 
 test("exposes a function", t => {
@@ -65,7 +65,18 @@ test("throws when element is not present", t => {
 
   t.throws(() => {
     $(".asdf").observe(() => {});
-  }, NotFoundException);
+  }, new NotFoundException(".asdf"));
+  t.end();
+});
+
+test("does not throw when element is present", t => {
+  const $ = unknot(K.constant(true), {
+    one: () => "<element>"
+  });
+
+  t.doesNotThrow(() => {
+    $(".asdf").observe(() => {});
+  }, new NotFoundException(".asdf"));
   t.end();
 });
 
@@ -76,6 +87,6 @@ test("does not throw when element is not present using maybe", t => {
 
   t.doesNotThrow(() => {
     $.maybe(".asdf").observe(() => {});
-  }, NotFoundException);
+  }, new NotFoundException(".asdf"));
   t.end();
 });
