@@ -222,3 +222,44 @@ $slideshow.observe(complexSetup);
 ```
 
 Using `$.maybe`, if the element is not found, any downstream code is skipped, without needing to check for the element's existence using a conditional.
+
+### Extending unknot
+
+The unknot query object can be extended with additional functions by supplying a `member` parameter when creating the query function. Additional functions must take the form of a function that accepts a stream of elements as the only argument, and returns the function that will be added to the return value of the unknot query.
+
+For example, if you wanted to add a function "`data`" for reading `dataList` attributes, it could be added like this:
+
+```javascript
+const $ = unknot(loaded, {
+  member: {
+    data: element => name => element.map(e => e.dataList[name])
+  }
+});
+
+// Given: <div class="foo" data-bar="baz"></div>
+const $foo = $(".foo");
+const bar = $foo.data("bar");
+
+bar.log();
+// <value> "baz"
+```
+
+Setting values can also be added the same way. A function for setting the text of an element could be implemented like this:
+
+```javascript
+import { Kefir as K } from "kefir";
+
+const $ = unknot(loaded, {
+  member: {
+    text: element => text =>
+      K.combine([element, text]).observe(([e, t]) => {
+        e.innerText = t;
+      })
+  }
+});
+
+const $foo = $(".foo");
+const countdown = K.sequentially(1000, [3, 2, 1, "Go!"]);
+
+$foo.text(countdown);
+```
