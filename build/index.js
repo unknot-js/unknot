@@ -46,9 +46,11 @@ var queryMaybeBy = function queryMaybeBy(sample, finder, selector) {
   }).flatMap(domResult).toProperty();
 };
 
-var merge = function merge(element, functions) {
-  Object.keys(functions).forEach(function (name) {
-    element[name] = functions[name](element);
+var reduceFunctionSets = function reduceFunctionSets(element, sets) {
+  sets.forEach(function (functions) {
+    Object.keys(functions).forEach(function (name) {
+      element[name] = functions[name](element);
+    });
   });
 
   return element;
@@ -57,12 +59,14 @@ var merge = function merge(element, functions) {
 function unknot(sample) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$one = _ref.one,
-      one = _ref$one === undefined ? _qPrime.queryOne : _ref$one;
+      one = _ref$one === undefined ? _qPrime.queryOne : _ref$one,
+      _ref$member = _ref.member,
+      member = _ref$member === undefined ? {} : _ref$member;
 
   var domMaybe = function domMaybe(selector) {
     var element = queryMaybeBy(sample, one, selector);
 
-    return merge(element, DEFAULT_FUNCTIONS);
+    return reduceFunctionSets(element, [DEFAULT_FUNCTIONS, member]);
   };
 
   var dom = function dom(selector) {

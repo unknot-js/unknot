@@ -58,6 +58,21 @@ test("exposes a className function", t => {
   t.end();
 });
 
+test("extends returned stream with member functions", t => {
+  const $ = unknot(K.never(), {
+    member: {
+      bar: () => () => null,
+      foo: element => () => element
+    }
+  });
+  const element = $(".asdf");
+
+  t.assert("bar" in element);
+  t.assert("foo" in element);
+  t.equal(element, element.foo());
+  t.end();
+});
+
 test("throws when element is not present", t => {
   const $ = unknot(K.constant(true), {
     one: () => undefined
