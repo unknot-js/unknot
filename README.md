@@ -1,5 +1,7 @@
 # unknot
 
+[![npm version](https://badge.fury.io/js/%40standard-library%2Funknot.svg)](https://badge.fury.io/js/%40standard-library%2Funknot)
+
 Unknot is an experiment combining FRP patterns with DOM querying, to attempt to remove the complexity of the page lifecycle when declaring relationships between events and DOM manipulation.
 
 Unknot is implemented using the [Kefir](https://rpominov.github.io/kefir), and the examples below assume some knowledge of Functional Reactive Programming patterns (TODO: make this not so).
