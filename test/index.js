@@ -105,3 +105,17 @@ test("does not throw when element is not present using maybe", t => {
   }, new NotFoundException(".asdf"));
   t.end();
 });
+
+test("does not repeat an element multiple times", t => {
+  const $ = unknot(K.sequentially(1, [true, true]), {
+    one: () => "<element>"
+  });
+
+  $(".asdf")
+    .scan((values, element) => [...values, element], [])
+    .last()
+    .observe(values => {
+      t.deepEqual(values, ["<element>"]);
+      t.end();
+    });
+});

@@ -43,7 +43,7 @@ var domResult = function domResult(e) {
 var queryMaybeBy = function queryMaybeBy(sample, finder, selector) {
   return sample.map(function () {
     return finder(selector);
-  }).flatMap(domResult).toProperty();
+  }).flatMap(domResult).toProperty().skipDuplicates();
 };
 
 var reduceFunctionSets = function reduceFunctionSets(element, sets) {
