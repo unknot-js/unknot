@@ -18,6 +18,13 @@ test("exposes a maybe function", t => {
   t.end();
 });
 
+test("exposes a wrap function", t => {
+  const $ = unknot(K.never());
+
+  t.equal(typeof $.wrap, "function");
+  t.end();
+});
+
 test("creates a stream", t => {
   const $ = unknot(K.never());
   const element = $(".asdf");
