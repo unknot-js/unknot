@@ -16,3 +16,20 @@ test("records an event", t => {
 
   pool.emit("click");
 });
+
+test("prevents an event", t => {
+  var prevented = false;
+
+  const pool = new EventEmitter();
+  const element = K.constant(pool);
+  const clicks = events(element)("click");
+
+  clicks.preventDefault();
+
+  clicks.observe(() => {
+    t.assert(prevented);
+    t.end();
+  });
+
+  pool.emit("click", { preventDefault: () => prevented = true });
+});

@@ -152,6 +152,14 @@ $foo.style({
 });
 ```
 
+A shorthand for calling `preventDefault` on this event stream is available. The following two lines are equivalent:
+
+```javascript
+clicks.observe(e => e.preventDefault());
+// vs.
+clicks.preventDefault();
+```
+
 ### Classes
 
 Using the `className` method, classes are added or removed by supplying a property stream that emits boolean values. The supplied class name will be applied when the property stream is `true`, and removed when it is `false`.
