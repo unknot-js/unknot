@@ -2,12 +2,11 @@
 # yarn lockfile v1
 
 
-"@standard-library/kefir-evolve@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@standard-library/kefir-evolve/-/kefir-evolve-1.0.0.tgz#bf36999c7f0e0cc0b2ee742b6cca2f12db7719f8"
+"@standard-library/kefir-evolve@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@standard-library/kefir-evolve/-/kefir-evolve-1.1.0.tgz#abd54bc79abd3cf21503bb2a054bfdc2624ff4f5"
   dependencies:
     kefir "^3.7.0"
-    ramda "^0.23.0"
 
 "@standard-library/q-prime@^3.0.4":
   version "3.0.4"
@@ -1126,7 +1125,13 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-kefir@^3.7.0, kefir@^3.7.4:
+kefir@^3.7.0:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.8.1.tgz#6b202bc78c01ed4aa1c329e885b43631bf62ec0c"
+  dependencies:
+    symbol-observable "1.0.4"
+
+kefir@^3.7.4:
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.7.4.tgz#edc6192f686be611ac5c882426f74bf0ee287ef7"
   dependencies:
@@ -1351,10 +1356,6 @@ punycode@^1.4.1:
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
-
-ramda@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.23.0.tgz#ccd13fff73497a93974e3e86327bfd87bd6e8e2b"
 
 randomatic@^1.1.3:
   version "1.1.7"

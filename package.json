@@ -7,7 +7,7 @@
   "author": "Standard Library",
   "license": "MIT",
   "dependencies": {
-    "@standard-library/kefir-evolve": "^1.0.0",
+    "@standard-library/kefir-evolve": "^1.1.0",
     "@standard-library/q-prime": "^3.0.4",
     "kefir": "^3.7.4"
   },
