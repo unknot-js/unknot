@@ -8,9 +8,17 @@ var _kefir = require("kefir");
 
 var events = function events(element) {
   return function (name) {
-    return element.flatMapLatest(function (e) {
+    var stream = element.flatMapLatest(function (e) {
       return _kefir.Kefir.fromEvents(e, name);
     });
+
+    stream.preventDefault = function () {
+      return stream.observe(function (e) {
+        return e.preventDefault();
+      });
+    };
+
+    return stream;
   };
 };
 

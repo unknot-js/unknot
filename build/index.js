@@ -63,10 +63,14 @@ function unknot(sample) {
       _ref$member = _ref.member,
       member = _ref$member === undefined ? {} : _ref$member;
 
+  var wrap = function wrap(element) {
+    return reduceFunctionSets(element, [DEFAULT_FUNCTIONS, member]);
+  };
+
   var domMaybe = function domMaybe(selector) {
     var element = queryMaybeBy(sample, one, selector);
 
-    return reduceFunctionSets(element, [DEFAULT_FUNCTIONS, member]);
+    return wrap(element);
   };
 
   var dom = function dom(selector) {
@@ -80,6 +84,7 @@ function unknot(sample) {
   };
 
   dom.maybe = domMaybe;
+  dom.wrap = wrap;
 
   return dom;
 }
