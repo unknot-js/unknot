@@ -32,6 +32,13 @@ test("exposes a list function", t => {
   t.end();
 });
 
+test("exposes a wrapList function", t => {
+  const $ = unknot(K.never());
+
+  t.equal(typeof $.wrap, "function");
+  t.end();
+});
+
 test("creates a stream", t => {
   const $ = unknot(K.never());
   const element = $(".asdf");
@@ -146,4 +153,19 @@ test("queries a node list", t => {
       t.deepEqual(values, [["<element>"]]);
       t.end();
     });
+});
+
+test("extends returned stream with list functions", t => {
+  const $ = unknot(K.never(), {
+    list: {
+      barq: () => () => null,
+      foos: elements => () => elements
+    }
+  });
+  const elements = $.list(".asdf");
+
+  t.assert("barq" in elements);
+  t.assert("foos" in elements);
+  t.equal(elements, elements.foos());
+  t.end();
 });

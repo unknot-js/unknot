@@ -36,6 +36,8 @@ var MEMBER_DEFAULTS = {
   style: _style2.default
 };
 
+var LIST_DEFAULTS = {};
+
 var domResult = function domResult(e) {
   return e === undefined ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
 };
@@ -63,14 +65,16 @@ function unknot(sample) {
       _ref$all = _ref.all,
       all = _ref$all === undefined ? _qPrime.query : _ref$all,
       _ref$member = _ref.member,
-      member = _ref$member === undefined ? {} : _ref$member;
+      member = _ref$member === undefined ? {} : _ref$member,
+      _ref$list = _ref.list,
+      list = _ref$list === undefined ? {} : _ref$list;
 
   var wrap = function wrap(element) {
     return reduceFunctionSets(element, [MEMBER_DEFAULTS, member]);
   };
 
-  var list = function list(selector) {
-    return queryMaybeBy(sample, all, selector);
+  var wrapList = function wrapList(elements) {
+    return reduceFunctionSets(elements, [LIST_DEFAULTS, list]);
   };
 
   var domMaybe = function domMaybe(selector) {
@@ -89,10 +93,17 @@ function unknot(sample) {
     return element;
   };
 
+  var domList = function domList(selector) {
+    var elements = queryMaybeBy(sample, all, selector);
+
+    return wrapList(elements);
+  };
+
   dom.maybe = domMaybe;
   dom.wrap = wrap;
 
-  dom.list = list;
+  dom.list = domList;
+  dom.wrapList = wrapList;
 
   return dom;
 }
