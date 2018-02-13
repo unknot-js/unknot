@@ -25,6 +25,13 @@ test("exposes a wrap function", t => {
   t.end();
 });
 
+test("exposes a list function", t => {
+  const $ = unknot(K.never());
+
+  t.equal(typeof $.list, "function");
+  t.end();
+});
+
 test("creates a stream", t => {
   const $ = unknot(K.never());
   const element = $(".asdf");
@@ -123,6 +130,20 @@ test("does not repeat an element multiple times", t => {
     .last()
     .observe(values => {
       t.deepEqual(values, ["<element>"]);
+      t.end();
+    });
+});
+
+test("queries a node list", t => {
+  const $ = unknot(K.constant(true), {
+    all: () => ["<element>"]
+  });
+
+  $.list(".asdf")
+    .scan((values, element) => [...values, element], [])
+    .last()
+    .observe(values => {
+      t.deepEqual(values, [["<element>"]]);
       t.end();
     });
 });

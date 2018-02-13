@@ -29,7 +29,7 @@ var _style2 = _interopRequireDefault(_style);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DEFAULT_FUNCTIONS = {
+var MEMBER_DEFAULTS = {
   attribute: _attribute2.default,
   className: _className2.default,
   events: _events2.default,
@@ -60,11 +60,17 @@ function unknot(sample) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$one = _ref.one,
       one = _ref$one === undefined ? _qPrime.queryOne : _ref$one,
+      _ref$all = _ref.all,
+      all = _ref$all === undefined ? _qPrime.query : _ref$all,
       _ref$member = _ref.member,
       member = _ref$member === undefined ? {} : _ref$member;
 
   var wrap = function wrap(element) {
-    return reduceFunctionSets(element, [DEFAULT_FUNCTIONS, member]);
+    return reduceFunctionSets(element, [MEMBER_DEFAULTS, member]);
+  };
+
+  var list = function list(selector) {
+    return queryMaybeBy(sample, all, selector);
   };
 
   var domMaybe = function domMaybe(selector) {
@@ -85,6 +91,8 @@ function unknot(sample) {
 
   dom.maybe = domMaybe;
   dom.wrap = wrap;
+
+  dom.list = list;
 
   return dom;
 }
