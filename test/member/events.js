@@ -2,7 +2,7 @@ import test from "tape";
 import { Kefir as K } from "kefir";
 import EventEmitter from "events";
 
-import events from "../lib/events.js";
+import events from "../../lib/member/events.js";
 
 test("records an event", t => {
   const pool = new EventEmitter();

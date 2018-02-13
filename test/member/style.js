@@ -1,7 +1,7 @@
 import test from "tape";
 import { Kefir as K } from "kefir";
 
-import style from "../lib/style.js";
+import style from "../../lib/member/style.js";
 
 test("updates a style", t => {
   const double = { style: {} }
