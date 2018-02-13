@@ -35,7 +35,7 @@ test("exposes a list function", t => {
 test("exposes a wrapList function", t => {
   const $ = unknot(K.never());
 
-  t.equal(typeof $.wrap, "function");
+  t.equal(typeof $.wrapList, "function");
   t.end();
 });
 
