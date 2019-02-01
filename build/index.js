@@ -15,6 +15,10 @@ var _member = _interopRequireDefault(require("./member"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var LIST_DEFAULTS = {};
 
 var domResult = function domResult(e) {
@@ -27,13 +31,13 @@ var queryMaybeBy = function queryMaybeBy(sample, finder, selector) {
   }).flatMap(domResult).toProperty().skipDuplicates();
 };
 
-var reduceFunctionSets = function reduceFunctionSets(element, sets) {
-  sets.forEach(function (functions) {
+var reduceFunctionSet = function reduceFunctionSet(functions) {
+  return function (element) {
     Object.keys(functions).forEach(function (name) {
       element[name] = functions[name](element);
     });
-  });
-  return element;
+    return element;
+  };
 };
 
 function unknot(sample) {
@@ -47,13 +51,8 @@ function unknot(sample) {
       _ref$list = _ref.list,
       list = _ref$list === void 0 ? {} : _ref$list;
 
-  var wrap = function wrap(element) {
-    return reduceFunctionSets(element, [_member.default, member]);
-  };
-
-  var wrapList = function wrapList(elements) {
-    return reduceFunctionSets(elements, [LIST_DEFAULTS, list]);
-  };
+  var wrap = reduceFunctionSet(_objectSpread({}, _member.default, member));
+  var wrapList = reduceFunctionSet(_objectSpread({}, LIST_DEFAULTS, list));
 
   var domMaybe = function domMaybe(selector) {
     var element = queryMaybeBy(sample, one, selector);
