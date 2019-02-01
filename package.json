@@ -12,14 +12,15 @@
     "kefir": "^3.7.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
     "faucet": "^0.0.1",
     "tape": "^4.8.0"
   },
   "scripts": {
-    "build": "babel lib  --source-root . --out-dir build",
-    "test": "tape -r babel-register 'test/**/*.js' | faucet"
+    "build": "babel lib --source-root . --out-dir build",
+    "test": "tape -r @babel/register 'test/**/*.js' | faucet"
   }
 }
