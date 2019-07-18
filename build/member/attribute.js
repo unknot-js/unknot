@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var attribute = function attribute(element) {
   return function (name) {
@@ -14,4 +14,4 @@ var attribute = function attribute(element) {
 };
 
 var _default = attribute;
-exports.default = _default;
+exports["default"] = _default;

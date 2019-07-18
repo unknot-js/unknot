@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _kefir = require("kefir");
 
 var _kefirEvolve = _interopRequireDefault(require("@standard-library/kefir-evolve"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -34,7 +34,7 @@ var assignStyle = function assignStyle(properties, element) {
 
 var style = function style(element) {
   return function (blueprint) {
-    return _kefir.Kefir.combine([element, (0, _kefirEvolve.default)(blueprint, {})]).observe(function (_ref) {
+    return _kefir.Kefir.combine([element, (0, _kefirEvolve["default"])(blueprint, {})]).observe(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),
           e = _ref2[0],
           s = _ref2[1];
@@ -45,4 +45,4 @@ var style = function style(element) {
 };
 
 var _default = style;
-exports.default = _default;
+exports["default"] = _default;
