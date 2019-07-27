@@ -1,5 +1,4 @@
 import test from "tape";
-import { Kefir as K } from "kefir";
 
 import { NotFoundException } from "../lib/errors";
 
