@@ -11,18 +11,8 @@ var _qPrime = require("@standard-library/q-prime");
 
 var _errors = require("./errors");
 
-var _member = _interopRequireDefault(require("./member"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var LIST_DEFAULTS = {};
-
 function result(subject) {
-  return subject === undefined ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(e);
+  return subject === undefined ? _kefir.Kefir.constantError() : _kefir.Kefir.constant(subject);
 }
 
 function queryMaybeBy(sample, finder, selector) {
@@ -51,8 +41,8 @@ function unknot(sample) {
       _ref$list = _ref.list,
       list = _ref$list === void 0 ? {} : _ref$list;
 
-  var wrap = reduceFunctionSet(_objectSpread({}, _member.default, member));
-  var wrapList = reduceFunctionSet(_objectSpread({}, LIST_DEFAULTS, list));
+  var wrap = reduceFunctionSet(member);
+  var wrapList = reduceFunctionSet(list);
 
   var maybe = function maybe(selector) {
     var element = queryMaybeBy(sample, one, selector);

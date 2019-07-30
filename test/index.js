@@ -47,38 +47,6 @@ test("creates a stream", t => {
   t.end();
 });
 
-test("exposes an events function", t => {
-  const $ = unknot(K.never());
-  const element = $(".asdf");
-
-  t.assert("events" in element);
-  t.end();
-});
-
-test("exposes an attribute function", t => {
-  const $ = unknot(K.never());
-  const element = $(".asdf");
-
-  t.assert("attribute" in element);
-  t.end();
-});
-
-test("exposes a style function", t => {
-  const $ = unknot(K.never());
-  const element = $(".asdf");
-
-  t.assert("style" in element);
-  t.end();
-});
-
-test("exposes a className function", t => {
-  const $ = unknot(K.never());
-  const element = $(".asdf");
-
-  t.assert("className" in element);
-  t.end();
-});
-
 test("extends returned stream with member functions", t => {
   const $ = unknot(K.never(), {
     member: {
