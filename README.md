@@ -39,7 +39,7 @@ Unknot understands when it is possible to apply the declared styles, and doesn't
 ## Installation
 
 ```shell
-npm install @standard-library/unknot
+npm install @unknot/unknot
 ```
 
 ## Setup

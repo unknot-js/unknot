@@ -1,6 +1,6 @@
 {
-  "name": "@standard-library/unknot",
-  "version": "0.7.0",
+  "name": "@unknot/unknot",
+  "version": "1.0.0",
   "description": "Declarative DOM manipulation, alpha-quality",
   "main": "build/index.js",
   "repository": "https://github.com/standard-library/unknot",
